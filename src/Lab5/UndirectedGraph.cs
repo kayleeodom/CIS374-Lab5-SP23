@@ -122,17 +122,19 @@ namespace Lab5
             get
             {
                 int connectedComponents = 0;
+                // make sure all the nodes aren't changed
+                ResetNodeColor();
+
                 // for all the nodes
                 foreach(var node in Nodes) 
                 {
                     //if node is white
                     if(node.Color == Color.White)
                     {
-                        //connectedComponents++
-                        connectedComponents++;
                         //explore the neighbors 
                         DFS(node);
-                        //DFSVisit(node,);
+                        //connectedComponents++
+                        connectedComponents++;
                     }
 
                 }      
@@ -141,7 +143,7 @@ namespace Lab5
             }
         }
 
-        // TODO (NEED TO DO)
+        // Done
 
         /// <summary>
         /// 
@@ -151,10 +153,13 @@ namespace Lab5
         /// <returns> true if node1 is reachable through any path from node2.</returns>
         public bool IsReachable(string nodename1, string nodename2)
         {
+            //GetNodeByName(nodename1);
             ResetNodeColor();
-            
+            DFS(GetNodeByName(nodename1));
 
-            return false;
+            var node2 = GetNodeByName(nodename2);
+
+            return node2.Color == Color.Black;
         }
 
         // DONE
@@ -262,7 +267,7 @@ namespace Lab5
             return resultDictionary;
         }
 
-        // Done (Double Check)
+        // Done (Double Check) - try again
         /// <summary>
         /// 
         /// </summary>
@@ -277,6 +282,7 @@ namespace Lab5
             {
                 if(currentNode.Color == Color.Black)
                 {
+
                     DFSVisit(currentNode, endingNode);
                     return true;
                 }
