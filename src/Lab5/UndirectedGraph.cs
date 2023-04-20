@@ -112,7 +112,7 @@ namespace Lab5
             return node;
         }
 
-        // TODO
+        // Done (might need to edit)
          /**
          * <summary> Returns the number of connected components in the graph .</summary>
          */
@@ -122,18 +122,26 @@ namespace Lab5
             get
             {
                 int connectedComponents = 0;
-
                 // for all the nodes
-                //     if node is white
-                //        connectedComponents++
-                //        explore the neighbors
-                //        
+                foreach(var node in Nodes) 
+                {
+                    //if node is white
+                    if(node.Color == Color.White)
+                    {
+                        //connectedComponents++
+                        connectedComponents++;
+                        //explore the neighbors 
+                        DFS(node);
+                        //DFSVisit(node,);
+                    }
+
+                }      
 
                 return connectedComponents;
             }
         }
 
-        // TODO
+        // TODO (NEED TO DO)
 
         /// <summary>
         /// 
@@ -144,11 +152,12 @@ namespace Lab5
         public bool IsReachable(string nodename1, string nodename2)
         {
             ResetNodeColor();
+            
 
             return false;
         }
 
-        // TODO
+        // DONE
         /// <summary>
         /// Searches the graph in a depth-first manner, creating a
         /// dictionary of the Node to Predessor Node links discovered by starting at the given node.
@@ -174,7 +183,7 @@ namespace Lab5
             return pred;
         }
 
-        // TODO
+        // DONE
         private void DFSVisit(Node node, Dictionary<Node,Node> pred)
         {
             Console.WriteLine(node);
@@ -194,7 +203,7 @@ namespace Lab5
             node.Color = Color.Black;
         }
 
-        // TODO
+        // DONE
         /// <summary>
         /// Searches the graph in a breadth-first manner, creating a
         /// dictionary of the Node to Predecessor and Distance discovered by starting at the given node.
@@ -253,7 +262,7 @@ namespace Lab5
             return resultDictionary;
         }
 
-        // TODO
+        // Done (Double Check)
         /// <summary>
         /// 
         /// </summary>
@@ -262,10 +271,17 @@ namespace Lab5
         /// <returns></returns>
         private bool DFSVisit(Node currentNode, Node endingNode)
         {
+            // recursively
             // return true if endingNode is found
-
+            foreach( var node in Nodes)
+            {
+                if(currentNode.Color == Color.Black)
+                {
+                    DFSVisit(currentNode, endingNode);
+                    return true;
+                }
+            }
             // return false if endingNode is NOT found after visiting ALL connected nodes
-
             return false;
         }
 
