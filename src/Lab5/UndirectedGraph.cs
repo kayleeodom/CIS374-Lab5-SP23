@@ -112,7 +112,7 @@ namespace Lab5
             return node;
         }
 
-        // Done (might need to edit)
+        // Done
          /**
          * <summary> Returns the number of connected components in the graph .</summary>
          */
@@ -132,7 +132,7 @@ namespace Lab5
                     if(node.Color == Color.White)
                     {
                         //explore the neighbors 
-                        DFS(node);
+                        DFSVisit(node, new Dictionary<Node, Node>());
                         //connectedComponents++
                         connectedComponents++;
                     }
@@ -280,7 +280,11 @@ namespace Lab5
             // return true if endingNode is found
             foreach( var node in Nodes)
             {
-                if(currentNode.Color == Color.Black)
+                if(currentNode == endingNode)
+                {
+                    return true;
+                }
+                else if(currentNode.Color == Color.Black)
                 {
 
                     DFSVisit(currentNode, endingNode);
